@@ -9,7 +9,7 @@ function App() {
       id: 1,
       title: "Estudar programação",
       description:
-        "Estudar programaçao para se tornar um desenvolvedor full stack.",
+        "Estudar programação para se tornar um desenvolvedor full stack.",
       isCompleted: false,
     },
     {
@@ -19,22 +19,34 @@ function App() {
       isCompleted: false,
     },
     {
-      id: 1,
-      title: "Estudar matemática ",
+      id: 3,
+      title: "Estudar matemática",
       description:
         "Estudar matemática para se tornar um desenvolvedor full stack.",
       isCompleted: false,
     },
   ]);
 
+  function onTasksClick(taskId) {
+    const newTasks = tasks.map((task) => {
+      //PRECISO ATUALIZAR A TAREFA4
+      if (task.id === taskId) {
+        return { ...task, isCompleted: !task.isCompleted };
+      }
+      //NAO PRECISO ATUALIZAR ESSA TAREFA
+      return task;
+    });
+    setTasks(newTasks);
+  }
+
   return (
-    <div className="w-screen h-screen bg-cyan-900 bs-slate-500 flex justify-center p-6">
-      <div className="w-[500px]">
+    <div className="w-screen h-screen bg-cyan-900 flex justify-center p-6">
+      <div className="w-[500px] bg-slate-500 p-6 rounded-md">
         <h1 className="text-3xl text-slate-100 font-bold text-center">
           Gerenciador Tarefas
         </h1>
         <AddTasks />
-        <Tasks tasks={tasks} />
+        <Tasks tasks={tasks} onTasksClick={onTasksClick} />
       </div>
     </div>
   );

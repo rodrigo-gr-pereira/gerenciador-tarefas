@@ -1,6 +1,7 @@
 import { useState } from "react";
 import AddTasks from "./components/AddTasks";
 import Tasks from "./components/Tasks";
+import { v4 as uuidv4 } from "uuid";
 import "./App.css";
 
 function App() {
@@ -45,7 +46,7 @@ function App() {
 
   function onAddTalksSubmit(title, description) {
     const newTask = {
-      id: tasks.length + 1,
+      id: uuidv4(),
       title,
       description,
       isCompleted: false,

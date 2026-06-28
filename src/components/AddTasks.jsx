@@ -3,6 +3,7 @@ import { useState } from "react";
 function AddTasks({ onAddTalksSubmit }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+
   //console.log({ title, description });
 
   return (
@@ -22,7 +23,15 @@ function AddTasks({ onAddTalksSubmit }) {
         onChange={(event) => setDescription(event.target.value)}
       />
       <button
-        onClick={() => onAddTalksSubmit(title, description)}
+        onClick={() => {
+          //verificar se o titulo e a descrição estão preenchidos .trim() ->Espaço vazio
+          if (!title.trim() || !description.trim()) {
+            return alert("Preencha o titulo e a descrição estão preenchidos");
+          }
+          onAddTalksSubmit(title, description);
+          setTitle("");
+          setDescription("");
+        }}
         className="bg-slate-500 text-white px-4 py-2 rounded-md font-medium"
       >
         Adicionar
